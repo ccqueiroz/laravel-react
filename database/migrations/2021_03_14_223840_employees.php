@@ -15,7 +15,8 @@ class Employees extends Migration
     {
         Schema::create('Employees', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('id_user');
+            $table->string('acesslevel', 40);
         });
     }
 

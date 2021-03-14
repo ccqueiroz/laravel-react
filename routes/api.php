@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/', [ControllerUser::class, 'list'])->name('list');
+Route::get('/edit/{id}', [ControllerUser::class, 'show'])->name('list');
+Route::put('/edit/{id}', [ControllerUser::class, 'edit'])->name('listPut');
+Route::post('/create', [ControllerUser::class, 'create'])->name('create');
+Route::delete('/delete/{id}', [ControllerUser::class, 'delete'])->name('delete');
+
+Route::fallback([ControllerUser::class, 'fallback']);
