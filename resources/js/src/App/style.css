@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+.container{
+    width: 100%;
+    height: 100%;
+}
+.contentList{
+    position: relative;
+    top: 70px;
+    width: 100%;
+}
+.table{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-spacing: 2px;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+.tableHeader, .tableBody{
+    width: 100%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1;
+
+    border-bottom:1.5px solid #dee2e6;
+
+}
+.userName-th, .userName-td{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    
+}
+.userEmail-th, .userEmail-td{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.userAccessLevel-th, .userAccessLevel-td{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.actions-th, .actions-td{
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th,
+.userName-td, .userEmail-td, .userAccessLevel-td, .actions-td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th{
+    font-weight: 700;
+    font-size: 16px;
+}
+.tableBody{
+    transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.tableBody:hover{
+    background-color: rgba(246, 243, 241, 0.938);
+}

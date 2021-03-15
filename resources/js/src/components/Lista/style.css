@@ -1,0 +1,31 @@
+.contentList{
+    position: relative;
+    top: 70px;
+    width: 100%;
+
+}
+table{
+    border-spacing: 2px;
+    border-color: gray;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+thead{
+    border-bottom:1.5px solid #dee2e6;
+}
+thead > tr{
+    display: table-row;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+}
+thead > tr > th{
+    padding: 12px;
+    font-weight: 700;
+    font-size: 16px;
+
+}
+.trBody{
+    display: table-cell;
+}

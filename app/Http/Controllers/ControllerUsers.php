@@ -8,7 +8,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class Users extends Controller
+class ControllerUsers extends Controller
 {
     protected $dataApi = [
         'error' => '',
@@ -21,6 +21,7 @@ class Users extends Controller
         $user = User::find($employee->id_user);
         $userArray = array();
 
+        $userArray['id'] = $user->id;
         $userArray['nome'] = $user->name;
         $userArray['email'] = $user->email;
         $userArray['password'] = $user->password;
