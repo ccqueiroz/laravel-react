@@ -55,7 +55,7 @@ class ControllerUsers extends Controller
        $user->nascimento = $data['nascimento'];
        $user->save();
 
-       $findUser = User::where('cpf', $data['cpf'])->get();
+       $findUser = User::where('email', $data['email'])->get();
 
        $employee->id_user = $findUser[0]->id;
        $employee->acesslevel = mb_convert_case($data['acesslevel'], MB_CASE_TITLE, 'UTF8');

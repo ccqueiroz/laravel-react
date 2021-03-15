@@ -58,6 +58,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #424548;
+
 
 }
 .userName-th, .userEmail-th, .userAccessLevel-th, .actions-th{
@@ -70,3 +72,10 @@
 .tableBody:hover{
     background-color: rgba(246, 243, 241, 0.938);
 }
+
+.noUser{
+    width: 100%;
+    margin-top: 70px;
+    color: #424548;
+}
+

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './style.css';
 import Header from '../components/Header';
+import Button from '../components/Button';
+import ModalUser from '../components/ModalUser';
+
 
 export default class App extends Component{
     constructor(){
@@ -8,10 +11,16 @@ export default class App extends Component{
 
         this.state = ({
             isLoading: true,
-            users : []
+            users : [],
+            modal: {
+                isOpen: false
+            }
         });
 
         this.listar = this.listar.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
+        this.algumafunc = this.algumafunc.bind(this);
     }
 
     componentWillMount(){
@@ -40,6 +49,14 @@ export default class App extends Component{
     inverseBirth(date){
         let y = date.split("-");
         return `${y[2]}/${y[1]}/${y[0]}`
+    }
+
+    openModal(){
+        this.setState({
+            modal:{
+                isOpen: !this.state.modal.isOpen
+            }
+        })
     }
 
     listar() {
@@ -84,6 +101,26 @@ export default class App extends Component{
         });
     }
 
+    algumafunc(){
+        console.log('click funck')
+    }
+    deleteUser(id){
+        // alert('deseja excluir?');
+        const data = new FormData();
+        data.append("_method", "DELETE");
+        fetch(`http://localhost:8000/api/delete/${id}`, {
+            method: "DELETE",
+            body: data
+        });
+        const users = this.state.users.filter(t => i.id != id);
+        this.setState({
+            users
+        });
+    }
+
+    editUser(){
+
+    }
     render(){
         const loading = (
             <div className="loading">
@@ -94,8 +131,8 @@ export default class App extends Component{
         return(
             <React.Fragment>
                <div className="container">
-                   <div className="containerHeader">
-                        <Header title="Lista de Usuários" btnName="Novo Usuário"/>
+                   <div className="containerHeader" >
+                        <Header title="Lista de Usuários" btnName="Novo Usuário" funcBtn={this.openModal}/>
                    </div>
                     <div className="containerList">
                         <div className="contentList">
@@ -107,26 +144,39 @@ export default class App extends Component{
                                     <div className="actions-th">Ações</div>
                                 </div>
                                 {
+                                    this.state.isLoading ? loading :
                                         this.state.users.map(function(item){
                                             return (
-                                                <div className="tableBody">
-                                                    <div class="userName-td">{item.nome}</div>
+                                                <div className="tableBody" key={item.id}>
+                                                    <div className="userName-td">{item.nome}</div>
                                                     <div className="userEmail-td">{item.email}</div>
                                                     <div className="userAccessLevel-td">{item.accessLevel}</div>
-                                                    <div className="actions-td">[EDITAR] [EXCLUIR]</div>
+                                                    <div className="actions-td" key={item.id}>
+                                                        <Button value="Editar" classBtn="edit" type="button"/>
+                                                        <Button value="Excluir" classBtn="delete" funButton={() => this.algumafunc}/>
+                                                    </div>
                                                 </div>
                                             );
                                         })
                                     }
+                                {
+                                    (this.state.users.length < 1 && this.state.isLoading === false) ? 
+                                    (<div className="noUser">
+                                        <h2>Nenhum Usuário Cadastrado</h2>
+                                    </div>) : null
+                                }
                             </div>
-
-                           
-
-
-
-
                         </div>
                     </div>
+                    {
+                        (this.state.modal.isOpen === true) ? 
+                            <ModalUser titulo="Cadastrar Novo Usuário" valueBtn="Cadastrar" classBtn="cadastro" addUser={e => this.adduser(e)} valueBtn2="Cancelar" classBtn2="delete" funcBtn={this.openModal} 
+                                atualizarPag={this.listar}
+                            />
+                            : null
+                    }
+
+
 
                </div>
             </React.Fragment>
