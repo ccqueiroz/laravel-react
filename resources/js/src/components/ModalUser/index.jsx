@@ -17,9 +17,6 @@ export default class ModalUser extends Component{
                 accessLevel: "",
                 email:""
             },
-            modal:{
-                isOpen: false
-            },
             TOKEN: document
             .querySelector('meta[name="csrf-token"]')
             .getAttribute("content")
@@ -27,20 +24,8 @@ export default class ModalUser extends Component{
 
         this.sendUser = this.sendUser.bind(this);
         this.handleInput = this.handleInput.bind(this);
-        this.openModal = this.openModal.bind(this);
     }
-    openModal(){
-        const modal = this.state.modal;
-       if(modal.isOpen === true){
-           modal.isOpen = false
-       }else{
-           modal.isOpen = true
-       }
-       this.setState({
-           modal
-       })
-
-   }
+    
     sendUser(element){
         element.preventDefault();
         const data = new FormData();
@@ -62,12 +47,7 @@ export default class ModalUser extends Component{
             body: data
         }).then(res => {
             if(res.status == 200){
-                const modal = this.state.modal;
                 this.props.atualizarPag();
-                modal.isOpen = false;
-                this.setState({
-                    modal
-                })
             }
         });
 

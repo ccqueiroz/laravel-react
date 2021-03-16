@@ -78,4 +78,16 @@
     margin-top: 70px;
     color: #424548;
 }
+@keyframes spin{
+    to{
+        transform: rotate(360deg);
+    }
+}
+.spinner{
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #22a6b3;
+    border-radius: 50px;
+    height: 50px;
+    animation: spin 1.2s linear infinite;
+}
 

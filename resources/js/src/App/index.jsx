@@ -20,7 +20,6 @@ export default class App extends Component{
         this.listar = this.listar.bind(this);
         this.openModal = this.openModal.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
-        this.algumafunc = this.algumafunc.bind(this);
     }
 
     componentWillMount(){
@@ -101,30 +100,24 @@ export default class App extends Component{
         });
     }
 
-    algumafunc(){
-        console.log('click funck')
-    }
     deleteUser(id){
-        // alert('deseja excluir?');
+        alert('deseja excluir')
         const data = new FormData();
         data.append("_method", "DELETE");
         fetch(`http://localhost:8000/api/delete/${id}`, {
             method: "DELETE",
             body: data
         });
-        const users = this.state.users.filter(t => i.id != id);
-        this.setState({
-            users
-        });
+        this.listar();
     }
 
     editUser(){
-
+        alert('editar')
     }
     render(){
         const loading = (
-            <div className="loading">
-                <i className="fa fa-spniner" />
+            <div className="spinner">
+                <h2>aguarde</h2>
             </div>
 
         );
@@ -144,19 +137,24 @@ export default class App extends Component{
                                     <div className="actions-th">Ações</div>
                                 </div>
                                 {
-                                    this.state.isLoading ? loading :
-                                        this.state.users.map(function(item){
+                                    this.state.isLoading ?  
+                                        <div className="loading">
+                                        </div> :
+                                        this.state.users.map((item) => {
                                             return (
                                                 <div className="tableBody" key={item.id}>
                                                     <div className="userName-td">{item.nome}</div>
                                                     <div className="userEmail-td">{item.email}</div>
                                                     <div className="userAccessLevel-td">{item.accessLevel}</div>
                                                     <div className="actions-td" key={item.id}>
-                                                        <Button value="Editar" classBtn="edit" type="button"/>
-                                                        <Button value="Excluir" classBtn="delete" funButton={() => this.algumafunc}/>
+                                                        <Button value="Editar" classBtn="edit" type="submit" funButton={this.openModal}/>
+                                                        <Button value="Excluir" classBtn="delete" funButton={() => this.deleteUser(item.id)}/>
                                                     </div>
                                                 </div>
                                             );
+                                            {this.setState({
+                                                isLoading: false
+                                            })}
                                         })
                                     }
                                 {

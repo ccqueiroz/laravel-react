@@ -1971,7 +1971,6 @@ var App = /*#__PURE__*/function (_Component) {
     _this.listar = _this.listar.bind(_assertThisInitialized(_this));
     _this.openModal = _this.openModal.bind(_assertThisInitialized(_this));
     _this.deleteUser = _this.deleteUser.bind(_assertThisInitialized(_this));
-    _this.algumafunc = _this.algumafunc.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2062,39 +2061,31 @@ var App = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "algumafunc",
-    value: function algumafunc() {
-      console.log('click funck');
-    }
-  }, {
     key: "deleteUser",
     value: function deleteUser(id) {
-      // alert('deseja excluir?');
+      alert('deseja excluir');
       var data = new FormData();
       data.append("_method", "DELETE");
       fetch("http://localhost:8000/api/delete/".concat(id), {
         method: "DELETE",
         body: data
       });
-      var users = this.state.users.filter(function (t) {
-        return i.id != id;
-      });
-      this.setState({
-        users: users
-      });
+      this.listar();
     }
   }, {
     key: "editUser",
-    value: function editUser() {}
+    value: function editUser() {
+      alert('editar');
+    }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var loading = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "loading",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
-          className: "fa fa-spniner"
+        className: "spinner",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+          children: "aguarde"
         })
       });
 
@@ -2129,9 +2120,9 @@ var App = /*#__PURE__*/function (_Component) {
                     className: "actions-th",
                     children: "A\xE7\xF5es"
                   })]
-                }), this.state.isLoading ? loading : this.state.users.map(function (item) {
-                  var _this3 = this;
-
+                }), this.state.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  className: "loading"
+                }) : this.state.users.map(function (item) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                     className: "tableBody",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -2148,16 +2139,22 @@ var App = /*#__PURE__*/function (_Component) {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Button__WEBPACK_IMPORTED_MODULE_3__.default, {
                         value: "Editar",
                         classBtn: "edit",
-                        type: "button"
+                        type: "submit",
+                        funButton: _this3.openModal
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Button__WEBPACK_IMPORTED_MODULE_3__.default, {
                         value: "Excluir",
                         classBtn: "delete",
                         funButton: function funButton() {
-                          return _this3.algumafunc;
+                          return _this3.deleteUser(item.id);
                         }
                       })]
                     }, item.id)]
                   }, item.id);
+                  {
+                    _this3.setState({
+                      isLoading: false
+                    });
+                  }
                 }), this.state.users.length < 1 && this.state.isLoading === false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                   className: "noUser",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
@@ -2171,7 +2168,7 @@ var App = /*#__PURE__*/function (_Component) {
             valueBtn: "Cadastrar",
             classBtn: "cadastro",
             addUser: function addUser(e) {
-              return _this4.adduser(e);
+              return _this3.adduser(e);
             },
             valueBtn2: "Cancelar",
             classBtn2: "delete",
@@ -2411,33 +2408,14 @@ var ModalUser = /*#__PURE__*/function (_Component) {
         accessLevel: "",
         email: ""
       },
-      modal: {
-        isOpen: false
-      },
       TOKEN: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
     _this.sendUser = _this.sendUser.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
-    _this.openModal = _this.openModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ModalUser, [{
-    key: "openModal",
-    value: function openModal() {
-      var modal = this.state.modal;
-
-      if (modal.isOpen === true) {
-        modal.isOpen = false;
-      } else {
-        modal.isOpen = true;
-      }
-
-      this.setState({
-        modal: modal
-      });
-    }
-  }, {
     key: "sendUser",
     value: function sendUser(element) {
       var _this2 = this;
@@ -2459,15 +2437,7 @@ var ModalUser = /*#__PURE__*/function (_Component) {
         body: data
       }).then(function (res) {
         if (res.status == 200) {
-          var modal = _this2.state.modal;
-
           _this2.props.atualizarPag();
-
-          modal.isOpen = false;
-
-          _this2.setState({
-            modal: modal
-          });
         }
       });
       element.target.name.value = "";
@@ -7050,7 +7020,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-family: 'Lato', sans-serif;\r\n    font-weight: 400;\r\n}\r\n.container{\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.contentList{\r\n    position: relative;\r\n    top: 70px;\r\n    width: 100%;\r\n}\r\n.table{\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n\r\n    border-spacing: 2px;\r\n    border-collapse: collapse;\r\n    margin-bottom: 1rem;\r\n}\r\n.tableHeader, .tableBody{\r\n    width: 100%;\r\n    height: 60px;\r\n    display: grid;\r\n    grid-template-columns: repeat(4, 1fr);\r\n    grid-template-rows: 1;\r\n\r\n    border-bottom:1.5px solid #dee2e6;\r\n\r\n}\r\n.userName-th, .userName-td{\r\n    grid-column-start: 1;\r\n    grid-column-end: 2;\r\n    \r\n}\r\n.userEmail-th, .userEmail-td{\r\n    grid-column-start: 2;\r\n    grid-column-end: 3;\r\n}\r\n.userAccessLevel-th, .userAccessLevel-td{\r\n    grid-column-start: 3;\r\n    grid-column-end: 4;\r\n}\r\n.actions-th, .actions-td{\r\n    grid-column-start: 4;\r\n    grid-column-end: 5;\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th,\r\n.userName-td, .userEmail-td, .userAccessLevel-td, .actions-td{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    color: #424548;\r\n\r\n\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th{\r\n    font-weight: 700;\r\n    font-size: 16px;\r\n}\r\n.tableBody{\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.tableBody:hover{\r\n    background-color: rgba(246, 243, 241, 0.938);\r\n}\r\n\r\n.noUser{\r\n    width: 100%;\r\n    margin-top: 70px;\r\n    color: #424548;\r\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-family: 'Lato', sans-serif;\r\n    font-weight: 400;\r\n}\r\n.container{\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.contentList{\r\n    position: relative;\r\n    top: 70px;\r\n    width: 100%;\r\n}\r\n.table{\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n\r\n    border-spacing: 2px;\r\n    border-collapse: collapse;\r\n    margin-bottom: 1rem;\r\n}\r\n.tableHeader, .tableBody{\r\n    width: 100%;\r\n    height: 60px;\r\n    display: grid;\r\n    grid-template-columns: repeat(4, 1fr);\r\n    grid-template-rows: 1;\r\n\r\n    border-bottom:1.5px solid #dee2e6;\r\n\r\n}\r\n.userName-th, .userName-td{\r\n    grid-column-start: 1;\r\n    grid-column-end: 2;\r\n    \r\n}\r\n.userEmail-th, .userEmail-td{\r\n    grid-column-start: 2;\r\n    grid-column-end: 3;\r\n}\r\n.userAccessLevel-th, .userAccessLevel-td{\r\n    grid-column-start: 3;\r\n    grid-column-end: 4;\r\n}\r\n.actions-th, .actions-td{\r\n    grid-column-start: 4;\r\n    grid-column-end: 5;\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th,\r\n.userName-td, .userEmail-td, .userAccessLevel-td, .actions-td{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    color: #424548;\r\n\r\n\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th{\r\n    font-weight: 700;\r\n    font-size: 16px;\r\n}\r\n.tableBody{\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.tableBody:hover{\r\n    background-color: rgba(246, 243, 241, 0.938);\r\n}\r\n\r\n.noUser{\r\n    width: 100%;\r\n    margin-top: 70px;\r\n    color: #424548;\r\n}\r\n@-webkit-keyframes spin{\r\n    to{\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n@keyframes spin{\r\n    to{\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n.spinner{\r\n    border: 8px solid rgba(0, 0, 0, 0.1);\r\n    border-left-color: #22a6b3;\r\n    border-radius: 50px;\r\n    height: 50px;\r\n    -webkit-animation: spin 1.2s linear infinite;\r\n            animation: spin 1.2s linear infinite;\r\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
