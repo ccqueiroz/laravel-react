@@ -10,32 +10,32 @@
 </blockquote>
 <p>Escolha um repositório e digite</p>
 <pre>
-    <code>"$ git clone https://github.com/CaioQueirozIFCE/laravel-react.git"</code>
+    <code>$ git clone https://github.com/CaioQueirozIFCE/laravel-react.git</code>
 </pre>
 <pre>
-    <code>"$ cd laravel-react"</code>
+    <code>$ cd laravel-react</code>
 </pre>
 <pre>
-    <code>"# Instale as dependências usando o composer"
+    <code># Instale as dependências usando o composer
         $ composer install
     </code>
 </pre>
 <pre>
-    <code>"# Renomeie .env.exemple para .env e configure seu banco de dados"</code>
+    <code># Renomeie .env.exemple para .env e configure seu banco de dados</code>
 </pre>
 <pre>
-    <code>"# Gere uma chave
+    <code># Gere uma chave
         $php artisan key:generate
-    "</code>
+    </code>
 </pre>
 <pre>
-    <code>"php artisan migrate:fresh"</code>
+    <code>php artisan migrate:fresh</code>
 </pre>
 <pre>
-    <code>"npm install && npm run watch"</code>
+    <code>npm install && npm run watch</code>
 </pre>
 <pre>
-    <code>"php artisan serve"</code>
+    <code>php artisan serve</code>
 </pre>
 <h3>Página Inicial</h3>
 <p>
