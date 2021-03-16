@@ -48,6 +48,7 @@ export default class ModalUser extends Component{
         }).then(res => {
             if(res.status == 200){
                 this.props.atualizarPag();
+                this.props.closeModal();
             }
         });
 

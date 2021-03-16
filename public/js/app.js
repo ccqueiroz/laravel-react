@@ -2163,7 +2163,8 @@ var App = /*#__PURE__*/function (_Component) {
             valueBtn2: "Cancelar",
             classBtn2: "delete",
             funcBtn: this.openModal,
-            atualizarPag: this.listar
+            atualizarPag: this.listar,
+            closeModal: this.openModal
           }) : null]
         })
       });
@@ -2428,6 +2429,8 @@ var ModalUser = /*#__PURE__*/function (_Component) {
       }).then(function (res) {
         if (res.status == 200) {
           _this2.props.atualizarPag();
+
+          _this2.props.closeModal();
         }
       });
       element.target.name.value = "";

@@ -166,7 +166,7 @@ export default class App extends Component{
                     {
                         (this.state.modal.isOpen === true) ? 
                             <ModalUser titulo="Cadastrar Novo Usuário" valueBtn="Cadastrar" classBtn="cadastro" addUser={e => this.adduser(e)} valueBtn2="Cancelar" classBtn2="delete" funcBtn={this.openModal} 
-                                atualizarPag={this.listar}
+                                atualizarPag={this.listar} closeModal={this.openModal}
                             />
                             : null
                     }
