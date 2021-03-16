@@ -40,6 +40,24 @@
 <h3>Página Inicial</h3>
 <p>
     <a class="anchor" target="_blank" href="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/list.png">
-        <img src="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/list.png" style="width:100%; max-width: 400px">
+        <img src="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/list.png" style="width:100%; max-width: 500px">
+    </a>
+</p>
+<h3>Página Inicial Sem Cadastro</h3>
+<p>
+    <a class="anchor" target="_blank" href="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/main_no_user.png">
+        <img src="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/main_no_user.png" style="width:100%; max-width: 500px">
+    </a>
+</p>
+<h3>Modal Cadastro</h3>
+<p>
+    <a class="anchor" target="_blank" href="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/cadastro.png">
+        <img src="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/cadastro.png" style="width:100%; max-width: 500px">
+    </a>
+</p>
+<h3>Modal Editar</h3>
+<p>
+    <a class="anchor" target="_blank" href="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/editar.png">
+        <img src="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/editar.png" style="width:100%; max-width: 500px">
     </a>
 </p>
