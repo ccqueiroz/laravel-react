@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/', [ControllerUsers::class, 'list'])->name('list');
 Route::get('/edit/{id}', [ControllerUsers::class, 'show'])->name('list');
 Route::put('/edit/{id}', [ControllerUsers::class, 'edit'])->name('listPut');
+Route::get('/user/{id}', [ControllerUsers::class, 'show'])->name('show');
 Route::post('/create', [ControllerUsers::class, 'create'])->name('create');
 Route::delete('/delete/{id}', [ControllerUsers::class, 'delete'])->name('delete');
 

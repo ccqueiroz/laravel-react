@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import ModalUser from '../components/ModalUser';
 
+import userImg from '../images/usuario.svg';
+
 
 export default class App extends Component{
     constructor(){
@@ -12,15 +14,21 @@ export default class App extends Component{
         this.state = ({
             isLoading: true,
             users : [],
+            userEdit: [],
             modal: {
-                isOpen: false
+                isOpen: false,
+                createOpen: false,
+                editOpen: false
             }
         });
 
         this.listar = this.listar.bind(this);
-        this.openModal = this.openModal.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
-        this.editUser = this.editUser.bind(this);
+        this.changeModalCreate = this.changeModalCreate.bind(this);
+        this.changeModalEdit = this.changeModalEdit.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.openModalCreate = this.openModalCreate.bind(this);
+        this.openModalEdit = this.openModalEdit.bind(this);
     }
 
     componentWillMount(){
@@ -54,9 +62,78 @@ export default class App extends Component{
     openModal(){
         this.setState({
             modal:{
-                isOpen: !this.state.modal.isOpen
+                isOpen: !this.state.modal.isOpen,
+                // createOpen: !this.state.modal.createOpen
             }
         })
+    }
+    changeModalCreate(){
+        this.setState({
+            modal:{
+                createOpen: !this.state.modal.createOpen
+            }
+        });
+    }
+    changeModalEdit(){
+        this.setState({
+            modal:{
+                editOpen: !this.state.modal.editOpen
+            }
+        });
+        
+    }
+
+    openModalCreate(){
+        this.setState({
+            modal:{
+                isOpen: !this.state.modal.isOpen,
+                createOpen: !this.state.modal.createOpen
+            }
+        })
+    }
+
+    openModalEdit(){
+        this.setState({
+            modal:{
+                isOpen: !this.state.modal.isOpen,
+                editOpen: !this.state.modal.editOpen
+            }
+        });
+
+        
+    }
+
+    show(id){
+        fetch(`http://localhost:8000/api/user/${id}`, {
+            headers:{
+                'Content-Type': 'application/json',
+                'Accept':'application/json'
+            }
+        }).then(res => res.json()).then(data => {
+           if(data.error){
+                console.log(data.error);
+           }else{
+                let usersArray = [];
+
+                data['success'].forEach(element => {
+                    // /* máscara para cpf ou cnpj */
+                    element.cpf = this.mascaraCampo(element.cpf);
+
+                    // /* inversão da forma da data de aniversário */
+                    element.nascimento = this.inverseBirth(element.nascimento);
+
+                    // /* máscara de telefone */
+                    element.telefone = this.mascaraTelefone(element.telefone);
+
+                    usersArray.push(element);
+                });
+                
+                this.setState(
+                    {
+                        userEdit : usersArray
+                    });
+            }
+        });
     }
 
     listar() {
@@ -102,7 +179,6 @@ export default class App extends Component{
     }
 
     deleteUser(id){
-        alert('deseja excluir')
         const data = new FormData();
         data.append("_method", "DELETE");
         fetch(`http://localhost:8000/api/delete/${id}`, {
@@ -112,21 +188,16 @@ export default class App extends Component{
         this.listar();
     }
 
-    editUser(){
-        this.openModal();
-
-    }
     render(){
         const loading = (
             <div className="spinner">
             </div>
-
         );
         return(
             <React.Fragment>
                <div className="container">
                    <div className="containerHeader" >
-                        <Header title="Lista de Usuários" btnName="Novo Usuário" funcBtn={this.openModal}/>
+                        <Header title="Lista de Usuários" btnName="Novo Usuário" funcBtn={this.openModalCreate}/>
                    </div>
                     <div className="containerList">
                         <div className="contentList">
@@ -137,6 +208,7 @@ export default class App extends Component{
                                     <div className="userAccessLevel-th">Nível de Acesso</div>
                                     <div className="actions-th">Ações</div>
                                 </div>
+                               
                                 {
                                     this.state.isLoading ?  
                                         loading : 
@@ -147,7 +219,7 @@ export default class App extends Component{
                                                     <div className="userEmail-td">{item.email}</div>
                                                     <div className="userAccessLevel-td">{item.accessLevel}</div>
                                                     <div className="actions-td" key={item.id}>
-                                                        <Button value="Editar" classBtn="edit" funButton={this.editUser}/>
+                                                        <Button value="Editar" classBtn="edit" funButton={()=> this.openModalEdit(item.id)}/>
                                                         <Button value="Excluir" classBtn="delete" funButton={() => this.deleteUser(item.id)}/>
                                                     </div>
                                                 </div>
@@ -157,6 +229,7 @@ export default class App extends Component{
                                 {
                                     (this.state.users.length < 1 && this.state.isLoading === false) ? 
                                     (<div className="noUser">
+                                        <img src={userImg} alt="nenhum usuário cadastrado"/>
                                         <h2>Nenhum Usuário Cadastrado</h2>
                                     </div>) : null
                                 }
@@ -165,13 +238,19 @@ export default class App extends Component{
                     </div>
                     {
                         (this.state.modal.isOpen === true) ? 
-                            <ModalUser titulo="Cadastrar Novo Usuário" valueBtn="Cadastrar" classBtn="cadastro" addUser={e => this.adduser(e)} valueBtn2="Cancelar" classBtn2="delete" funcBtn={this.openModal} 
-                                atualizarPag={this.listar} closeModal={this.openModal}
-                            />
+                            (this.state.modal.editOpen === true) ? 
+                                <ModalUser titulo="Editar Usuário" valueBtn="Editar" classBtn="cadastro"  valueBtn2="Cancelar" classBtn2="delete" funcBtn={this.openModalEdit} 
+                                                atualizarPag={this.listar} closeModal={this.openModalEdit} funcSubmit={false} method={"PUT"} initialState={true}
+                                            /> 
+                                            : 
+                            (this.state.modal.createOpen === true) ?
+                                <ModalUser titulo="Cadastrar Novo Usuário" valueBtn="Cadastrar" classBtn="cadastro" valueBtn2="Cancelar" classBtn2="delete" funcBtn={this.openModalCreate} 
+                                                atualizarPag={this.listar} closeModal={this.openModalCreate} funcSubmit={true} method={"POST"} initialState={false} identifyUser={this.state.userEdit[0]}
+                                            />
+                                            : null
+                            
                             : null
                     }
-
-
 
                </div>
             </React.Fragment>
