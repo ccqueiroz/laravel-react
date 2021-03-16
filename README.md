@@ -39,5 +39,7 @@
 </pre>
 <h3>Página Inicial</h3>
 <p>
-    <a class="anchor" target="_blank" href="></a>
+    <a class="anchor" target="_blank" href="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/list.png">
+        <img src="https://github.com/CaioQueirozIFCE/laravel-react/blob/main/resources/js/src/images/list.png" style="width:100%; max-width: 400px">
+    </a>
 </p>
