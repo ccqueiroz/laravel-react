@@ -20,13 +20,13 @@ button{
     background-color: #e0a800;
     border-color: #d39e00;
 }
-.delete{
+.delete, .cancelar{
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
     text-decoration: none;
 }
-.delete:hover{
+.delete:hover, .cancelar:hover{
     background-color: #95333c;
 }
 
@@ -38,6 +38,13 @@ button{
     background-color: #17a2b8;
     border-color: #17a2b8;
 
+    border-radius: 6px!important;
+    font-size: 17px!important;
+}
+.cancelar{
+    width: 120px!important;
+    height: 40px!important;
+    
     border-radius: 6px!important;
     font-size: 17px!important;
 }

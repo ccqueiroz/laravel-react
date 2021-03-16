@@ -2237,7 +2237,7 @@ var App = /*#__PURE__*/function (_Component) {
             valueBtn: "Editar",
             classBtn: "cadastro",
             valueBtn2: "Cancelar",
-            classBtn2: "delete",
+            classBtn2: "cancelar",
             funcBtn: this.openModalEdit,
             atualizarPag: this.listar,
             closeModal: this.openModalEdit,
@@ -2249,7 +2249,7 @@ var App = /*#__PURE__*/function (_Component) {
             valueBtn: "Cadastrar",
             classBtn: "cadastro",
             valueBtn2: "Cancelar",
-            classBtn2: "delete",
+            classBtn2: "cancelar",
             funcBtn: this.openModalCreate,
             atualizarPag: this.listar,
             closeModal: this.openModalCreate,
@@ -7216,7 +7216,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "button{\r\n    width: 70px;\r\n    height: 40px;\r\n    border-radius: 10%;\r\n    margin-left: 15px;\r\n    cursor: pointer;\r\n    font-size: 14px;\r\n\r\n    outline: none;\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.edit{\r\n    background-color: #ffc107;\r\n    border-color: #ffc107;\r\n    color: #212529;\r\n    text-decoration: none;\r\n    \r\n}\r\n.edit:hover{\r\n    background-color: #e0a800;\r\n    border-color: #d39e00;\r\n}\r\n.delete{\r\n    color: #fff;\r\n    background-color: #dc3545;\r\n    border-color: #dc3545;\r\n    text-decoration: none;\r\n}\r\n.delete:hover{\r\n    background-color: #95333c;\r\n}\r\n\r\n.cadastro{\r\n    width: 120px!important;\r\n    height: 40px!important;\r\n\r\n    color: #fff;\r\n    background-color: #17a2b8;\r\n    border-color: #17a2b8;\r\n\r\n    border-radius: 6px!important;\r\n    font-size: 17px!important;\r\n}\r\n.cadastro:hover{\r\n    background-color: #138496;\r\n    border-color: #117a8b;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "button{\r\n    width: 70px;\r\n    height: 40px;\r\n    border-radius: 10%;\r\n    margin-left: 15px;\r\n    cursor: pointer;\r\n    font-size: 14px;\r\n\r\n    outline: none;\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.edit{\r\n    background-color: #ffc107;\r\n    border-color: #ffc107;\r\n    color: #212529;\r\n    text-decoration: none;\r\n    \r\n}\r\n.edit:hover{\r\n    background-color: #e0a800;\r\n    border-color: #d39e00;\r\n}\r\n.delete, .cancelar{\r\n    color: #fff;\r\n    background-color: #dc3545;\r\n    border-color: #dc3545;\r\n    text-decoration: none;\r\n}\r\n.delete:hover, .cancelar:hover{\r\n    background-color: #95333c;\r\n}\r\n\r\n.cadastro{\r\n    width: 120px!important;\r\n    height: 40px!important;\r\n\r\n    color: #fff;\r\n    background-color: #17a2b8;\r\n    border-color: #17a2b8;\r\n\r\n    border-radius: 6px!important;\r\n    font-size: 17px!important;\r\n}\r\n.cancelar{\r\n    width: 120px!important;\r\n    height: 40px!important;\r\n    \r\n    border-radius: 6px!important;\r\n    font-size: 17px!important;\r\n}\r\n.cadastro:hover{\r\n    background-color: #138496;\r\n    border-color: #117a8b;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

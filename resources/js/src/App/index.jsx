@@ -239,12 +239,12 @@ export default class App extends Component{
                     {
                         (this.state.modal.isOpen === true) ? 
                             (this.state.modal.editOpen === true) ? 
-                                <ModalUser titulo="Editar Usuário" valueBtn="Editar" classBtn="cadastro"  valueBtn2="Cancelar" classBtn2="delete" funcBtn={this.openModalEdit} 
+                                <ModalUser titulo="Editar Usuário" valueBtn="Editar" classBtn="cadastro"  valueBtn2="Cancelar" classBtn2="cancelar" funcBtn={this.openModalEdit} 
                                                 atualizarPag={this.listar} closeModal={this.openModalEdit} funcSubmit={false} method={"PUT"} initialState={true}
                                             /> 
                                             : 
                             (this.state.modal.createOpen === true) ?
-                                <ModalUser titulo="Cadastrar Novo Usuário" valueBtn="Cadastrar" classBtn="cadastro" valueBtn2="Cancelar" classBtn2="delete" funcBtn={this.openModalCreate} 
+                                <ModalUser titulo="Cadastrar Novo Usuário" valueBtn="Cadastrar" classBtn="cadastro" valueBtn2="Cancelar" classBtn2="cancelar" funcBtn={this.openModalCreate} 
                                                 atualizarPag={this.listar} closeModal={this.openModalCreate} funcSubmit={true} method={"POST"} initialState={false} identifyUser={this.state.userEdit[0]}
                                             />
                                             : null
