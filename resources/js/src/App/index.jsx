@@ -20,6 +20,7 @@ export default class App extends Component{
         this.listar = this.listar.bind(this);
         this.openModal = this.openModal.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+        this.editUser = this.editUser.bind(this);
     }
 
     componentWillMount(){
@@ -112,12 +113,12 @@ export default class App extends Component{
     }
 
     editUser(){
-        alert('editar')
+        this.openModal();
+
     }
     render(){
         const loading = (
             <div className="spinner">
-                <h2>aguarde</h2>
             </div>
 
         );
@@ -138,8 +139,7 @@ export default class App extends Component{
                                 </div>
                                 {
                                     this.state.isLoading ?  
-                                        <div className="loading">
-                                        </div> :
+                                        loading : 
                                         this.state.users.map((item) => {
                                             return (
                                                 <div className="tableBody" key={item.id}>
@@ -147,14 +147,11 @@ export default class App extends Component{
                                                     <div className="userEmail-td">{item.email}</div>
                                                     <div className="userAccessLevel-td">{item.accessLevel}</div>
                                                     <div className="actions-td" key={item.id}>
-                                                        <Button value="Editar" classBtn="edit" type="submit" funButton={this.openModal}/>
+                                                        <Button value="Editar" classBtn="edit" funButton={this.editUser}/>
                                                         <Button value="Excluir" classBtn="delete" funButton={() => this.deleteUser(item.id)}/>
                                                     </div>
                                                 </div>
                                             );
-                                            {this.setState({
-                                                isLoading: false
-                                            })}
                                         })
                                     }
                                 {

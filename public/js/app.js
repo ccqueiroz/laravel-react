@@ -1971,6 +1971,7 @@ var App = /*#__PURE__*/function (_Component) {
     _this.listar = _this.listar.bind(_assertThisInitialized(_this));
     _this.openModal = _this.openModal.bind(_assertThisInitialized(_this));
     _this.deleteUser = _this.deleteUser.bind(_assertThisInitialized(_this));
+    _this.editUser = _this.editUser.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2075,7 +2076,7 @@ var App = /*#__PURE__*/function (_Component) {
   }, {
     key: "editUser",
     value: function editUser() {
-      alert('editar');
+      this.openModal();
     }
   }, {
     key: "render",
@@ -2083,10 +2084,7 @@ var App = /*#__PURE__*/function (_Component) {
       var _this3 = this;
 
       var loading = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "spinner",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
-          children: "aguarde"
-        })
+        className: "spinner"
       });
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -2120,9 +2118,7 @@ var App = /*#__PURE__*/function (_Component) {
                     className: "actions-th",
                     children: "A\xE7\xF5es"
                   })]
-                }), this.state.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  className: "loading"
-                }) : this.state.users.map(function (item) {
+                }), this.state.isLoading ? loading : this.state.users.map(function (item) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                     className: "tableBody",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -2139,8 +2135,7 @@ var App = /*#__PURE__*/function (_Component) {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Button__WEBPACK_IMPORTED_MODULE_3__.default, {
                         value: "Editar",
                         classBtn: "edit",
-                        type: "submit",
-                        funButton: _this3.openModal
+                        funButton: _this3.editUser
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Button__WEBPACK_IMPORTED_MODULE_3__.default, {
                         value: "Excluir",
                         classBtn: "delete",
@@ -2150,11 +2145,6 @@ var App = /*#__PURE__*/function (_Component) {
                       })]
                     }, item.id)]
                   }, item.id);
-                  {
-                    _this3.setState({
-                      isLoading: false
-                    });
-                  }
                 }), this.state.users.length < 1 && this.state.isLoading === false ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                   className: "noUser",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
@@ -7020,7 +7010,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-family: 'Lato', sans-serif;\r\n    font-weight: 400;\r\n}\r\n.container{\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.contentList{\r\n    position: relative;\r\n    top: 70px;\r\n    width: 100%;\r\n}\r\n.table{\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n\r\n    border-spacing: 2px;\r\n    border-collapse: collapse;\r\n    margin-bottom: 1rem;\r\n}\r\n.tableHeader, .tableBody{\r\n    width: 100%;\r\n    height: 60px;\r\n    display: grid;\r\n    grid-template-columns: repeat(4, 1fr);\r\n    grid-template-rows: 1;\r\n\r\n    border-bottom:1.5px solid #dee2e6;\r\n\r\n}\r\n.userName-th, .userName-td{\r\n    grid-column-start: 1;\r\n    grid-column-end: 2;\r\n    \r\n}\r\n.userEmail-th, .userEmail-td{\r\n    grid-column-start: 2;\r\n    grid-column-end: 3;\r\n}\r\n.userAccessLevel-th, .userAccessLevel-td{\r\n    grid-column-start: 3;\r\n    grid-column-end: 4;\r\n}\r\n.actions-th, .actions-td{\r\n    grid-column-start: 4;\r\n    grid-column-end: 5;\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th,\r\n.userName-td, .userEmail-td, .userAccessLevel-td, .actions-td{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    color: #424548;\r\n\r\n\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th{\r\n    font-weight: 700;\r\n    font-size: 16px;\r\n}\r\n.tableBody{\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.tableBody:hover{\r\n    background-color: rgba(246, 243, 241, 0.938);\r\n}\r\n\r\n.noUser{\r\n    width: 100%;\r\n    margin-top: 70px;\r\n    color: #424548;\r\n}\r\n@-webkit-keyframes spin{\r\n    to{\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n@keyframes spin{\r\n    to{\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n.spinner{\r\n    border: 8px solid rgba(0, 0, 0, 0.1);\r\n    border-left-color: #22a6b3;\r\n    border-radius: 50px;\r\n    height: 50px;\r\n    -webkit-animation: spin 1.2s linear infinite;\r\n            animation: spin 1.2s linear infinite;\r\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*{\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-family: 'Lato', sans-serif;\r\n    font-weight: 400;\r\n}\r\n.container{\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.contentList{\r\n    position: relative;\r\n    top: 70px;\r\n    width: 100%;\r\n}\r\n.table{\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n\r\n    border-spacing: 2px;\r\n    border-collapse: collapse;\r\n    margin-bottom: 1rem;\r\n}\r\n.tableHeader, .tableBody{\r\n    width: 100%;\r\n    height: 60px;\r\n    display: grid;\r\n    grid-template-columns: repeat(4, 1fr);\r\n    grid-template-rows: 1;\r\n\r\n    border-bottom:1.5px solid #dee2e6;\r\n\r\n}\r\n.userName-th, .userName-td{\r\n    grid-column-start: 1;\r\n    grid-column-end: 2;\r\n    \r\n}\r\n.userEmail-th, .userEmail-td{\r\n    grid-column-start: 2;\r\n    grid-column-end: 3;\r\n}\r\n.userAccessLevel-th, .userAccessLevel-td{\r\n    grid-column-start: 3;\r\n    grid-column-end: 4;\r\n}\r\n.actions-th, .actions-td{\r\n    grid-column-start: 4;\r\n    grid-column-end: 5;\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th,\r\n.userName-td, .userEmail-td, .userAccessLevel-td, .actions-td{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    color: #424548;\r\n\r\n\r\n}\r\n.userName-th, .userEmail-th, .userAccessLevel-th, .actions-th{\r\n    font-weight: 700;\r\n    font-size: 16px;\r\n}\r\n.tableBody{\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.tableBody:hover{\r\n    background-color: rgba(246, 243, 241, 0.938);\r\n}\r\n\r\n.noUser{\r\n    width: 100%;\r\n    margin-top: 70px;\r\n    color: #424548;\r\n}\r\n@-webkit-keyframes spin{\r\n    0%{\r\n        border-left-color: #22a6b3;\r\n\r\n        transform: rotate(90deg);\r\n    }\r\n    25%{\r\n        border-left-color: #b11c17;\r\n\r\n        transform: rotate(180deg);\r\n    }\r\n    50%{\r\n        border-left-color: #eecd10;\r\n\r\n        transform: rotate(270deg);\r\n    }\r\n    100%{\r\n        border-left-color: #720941;\r\n\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n@keyframes spin{\r\n    0%{\r\n        border-left-color: #22a6b3;\r\n\r\n        transform: rotate(90deg);\r\n    }\r\n    25%{\r\n        border-left-color: #b11c17;\r\n\r\n        transform: rotate(180deg);\r\n    }\r\n    50%{\r\n        border-left-color: #eecd10;\r\n\r\n        transform: rotate(270deg);\r\n    }\r\n    100%{\r\n        border-left-color: #720941;\r\n\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n.spinner{\r\n    position: relative;\r\n    top: 80px;\r\n    border: 8px solid rgba(0, 0, 0, 0.1);\r\n    border-left-color: #22a6b3;\r\n    border-radius: 50%;\r\n    height: 50px;\r\n    width: 50px;\r\n    -webkit-animation: spin .8s linear infinite;\r\n            animation: spin .8s linear infinite;\r\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7044,7 +7034,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "button{\r\n    width: 70px;\r\n    height: 40px;\r\n    border-radius: 10%;\r\n    margin-left: 15px;\r\n    cursor: pointer;\r\n    font-size: 14px;\r\n\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.edit{\r\n    background-color: #ffc107;\r\n    border-color: #ffc107;\r\n    color: #212529;\r\n    text-decoration: none;\r\n    \r\n}\r\n.edit:hover{\r\n    background-color: #e0a800;\r\n    border-color: #d39e00;\r\n}\r\n.delete{\r\n    color: #fff;\r\n    background-color: #dc3545;\r\n    border-color: #dc3545;\r\n    text-decoration: none;\r\n}\r\n.delete:hover{\r\n    background-color: #95333c;\r\n}\r\n\r\n.cadastro{\r\n    width: 120px!important;\r\n    height: 40px!important;\r\n\r\n    color: #fff;\r\n    background-color: #17a2b8;\r\n    border-color: #17a2b8;\r\n\r\n    border-radius: 6px!important;\r\n    font-size: 17px!important;\r\n}\r\n.cadastro:hover{\r\n    background-color: #138496;\r\n    border-color: #117a8b;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "button{\r\n    width: 70px;\r\n    height: 40px;\r\n    border-radius: 10%;\r\n    margin-left: 15px;\r\n    cursor: pointer;\r\n    font-size: 14px;\r\n\r\n    outline: none;\r\n    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;\r\n}\r\n.edit{\r\n    background-color: #ffc107;\r\n    border-color: #ffc107;\r\n    color: #212529;\r\n    text-decoration: none;\r\n    \r\n}\r\n.edit:hover{\r\n    background-color: #e0a800;\r\n    border-color: #d39e00;\r\n}\r\n.delete{\r\n    color: #fff;\r\n    background-color: #dc3545;\r\n    border-color: #dc3545;\r\n    text-decoration: none;\r\n}\r\n.delete:hover{\r\n    background-color: #95333c;\r\n}\r\n\r\n.cadastro{\r\n    width: 120px!important;\r\n    height: 40px!important;\r\n\r\n    color: #fff;\r\n    background-color: #17a2b8;\r\n    border-color: #17a2b8;\r\n\r\n    border-radius: 6px!important;\r\n    font-size: 17px!important;\r\n}\r\n.cadastro:hover{\r\n    background-color: #138496;\r\n    border-color: #117a8b;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

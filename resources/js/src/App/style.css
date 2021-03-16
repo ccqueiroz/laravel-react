@@ -79,15 +79,35 @@
     color: #424548;
 }
 @keyframes spin{
-    to{
+    0%{
+        border-left-color: #22a6b3;
+
+        transform: rotate(90deg);
+    }
+    25%{
+        border-left-color: #b11c17;
+
+        transform: rotate(180deg);
+    }
+    50%{
+        border-left-color: #eecd10;
+
+        transform: rotate(270deg);
+    }
+    100%{
+        border-left-color: #720941;
+
         transform: rotate(360deg);
     }
 }
 .spinner{
+    position: relative;
+    top: 80px;
     border: 8px solid rgba(0, 0, 0, 0.1);
     border-left-color: #22a6b3;
-    border-radius: 50px;
+    border-radius: 50%;
     height: 50px;
-    animation: spin 1.2s linear infinite;
+    width: 50px;
+    animation: spin .8s linear infinite;
 }
 
